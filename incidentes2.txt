@@ -1,0 +1,5 @@
+2020-01-01;ABC-01A;1;Esto es una moto azul
+2020-02-01;QER-02B;5;Esto es una moto azul
+2020-02-01;QER-02B;5;Esto es una moto azul
+2020-03-01;HDF-63C;5;Esto es una moto roja
+

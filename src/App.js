@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid, esES } from "@mui/x-data-grid";
 import { Input } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./App.css";
+
 
 function App() {
   const columns = [
@@ -23,10 +24,10 @@ function App() {
     },
   ];
 
+  const [issues, setIssues] = useState([])
   const [text, setText] = useState([]);
   const [invalid, setInvalid] = useState(true);
   const [inputValue, setInputValue] = useState();
-
   let fileReader;
 
   const onChange = (e) => {
@@ -67,8 +68,13 @@ function App() {
         /((([1][9][0-9][0-9])|(20[0-1][0-9]|20[2][0-2]))(-|\/)(0[1-9]|10|11|12)(-|\/)(3[01]|[12][0-9]|0?[1-9])(;)[A-Z]{3}(-)(\d{2})[A-Z]{1}).+/;
       if (pattern.test(text)) return { id: i, incidente: x };
     });
+    setIssues(linesGood?.filter((x) => x !== undefined));
     setText(linesGood?.filter((x) => x !== undefined));
   };
+
+  useEffect(() => {
+    if(!inputValue?.length) setText(issues)
+  }, [inputValue, issues])
 
   return (
     <div>
